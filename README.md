@@ -68,25 +68,20 @@ XVAGVAVVGDFFGGXGVAG!DAGFX AFDAGFFFVAAAGGAGXVFFG!FX G DGDAG 4XDG
 - **Méthode de chiffrement** : Chiffrement de ___ le code est ici : `message3/message3.py`
 - **Message déchiffré** : [Message déchiffré ici]
 
----
 
-## 4. Implémentation Python
-
-### 4.1 Structure du programme
-Décrire brièvement l'architecture du programme, les fonctions principales, et comment il fonctionne pour déchiffrer les messages.
-
-### 4.2 Exemples de code
-Inclure des extraits de code pertinents pour chaque méthode de déchiffrement.
-
----
 
 ## 5. Conclusion
 
-Résumé du projet, des défis rencontrés, des solutions apportées, et des enseignements tirés.
 
+- Lors de cette sae nous avons pu mettre en pratique les méthodes de chiffrement vues en cours. Nous avons pu déchiffrer les trois messages secrets en utilisant les méthodes de César et de Vigenère. Nous avons également pu découvrir de nouvelles méthodes de chiffrement et de déchiffrement. Ce projet nous a permis de mieux comprendre le fonctionnement des algorithmes de chiffrement et de déchiffrement.
 ---
 
 ## 6. Références
 
-Lister les sources, cours ou documents utilisés pour le projet.
+Afin de comprendre comment fonctionnent les méthodes de chiffrement et de déchiffrement, nous avons consulté les ressources suivantes :
 
+- Chiffrement de césar : https://www.dcode.fr/
+
+- Chiffrement de Vigenère : https://www.dcode.fr/
+
+- Chiffrement ADFGVX : https://www.apprendre-en-ligne.net/crypto/subst/adfgvx.html
