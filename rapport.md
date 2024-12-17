@@ -109,3 +109,61 @@ Au cours du processus d’analyse et de déchiffrement, plusieurs défis ont ét
 - **Gestion correcte du padding** : La bibliothèque cryptographique a été configurée pour gérer automatiquement le remplissage et son retrait lors du déchiffrement, garantissant ainsi l’intégrité des données en clair récupérées.
 
 Ces solutions ont permis de surmonter les principaux défis rencontrés et d’assurer un déchiffrement précis des messages. Cependant, ils soulignent également la complexité du problème posé et l’importance de combiner différentes techniques pour parvenir à un résultat.  
+
+
+### **5. Analyse critique de la méthode d'Alan et Blaise**
+
+#### **Défaillances identifiées dans leur mise en œuvre**
+
+- **Concaténation de l’IV et du message chiffré** :  Dans la trace réseau, l’IV était directement concaténé au message chiffré sans protection supplémentaire. Bien que courant, cela peut poser problème si l’IV est exposé ou manipulé.
+
+- **Mauvaise gestion de l’IV** : 
+   - **Réutilisation potentielle** : Réutiliser le même IV pour plusieurs messages avec une même clé compromet la sécurité, car CBC devient vulnérable à des attaques par texte clair partiel.
+   - **IV faible ou prévisible** : Un IV non généré de manière aléatoire ou cryptographiquement sûr permet à un attaquant de deviner des données sous-jacentes.
+
+- **Absence de vérification d’intégrité** : Aucun mécanisme comme un **HMAC (Hash-based Message Authentication Code)** n’a été utilisé pour authentifier les messages. Cela ouvre la porte à des modifications non détectées du contenu chiffré.
+
+
+
+#### **Bonnes pratiques qu'ils auraient dû adopter**
+
+- **Génération d’IV aléatoires et sécurisés** : Assurer que chaque IV soit unique et aléatoire pour chaque message chiffré. Cela garantit que deux messages contenant les mêmes données auront des résultats chiffrés différents.
+
+- **Chiffrement authentifié** : Utiliser des modes comme **AES-GCM** ou **AES-CCM**, qui offrent simultanément chiffrement et authentification des données.
+
+- **Mécanismes pour détecter les modifications** : Associer un HMAC ou une signature numérique à chaque message pour détecter toute modification et garantir son authenticité.
+
+- **Séparation stricte entre stéganographie et cryptographie** : Ne pas mélanger ces deux techniques sans précautions. Elles doivent être correctement isolées pour éviter des vulnérabilités.
+
+
+
+### **Conclusion**
+
+#### **Résumé des étapes suivies et des résultats obtenus**
+
+- Une analyse de la trace réseau a permis d’identifier et d’isoler l’IV, le message chiffré, et de confirmer l’utilisation du mode CBC.  
+- Des données cachées dans des images ont été extraites grâce à des outils de stéganographie.  
+- Le déchiffrement, réalisé avec Python et des bibliothèques robustes, a permis de récupérer les messages en clair et de valider les hypothèses formulées.
+
+
+
+#### **Importance de sécuriser les communications**
+
+Ce défi souligne l’importance de suivre des pratiques de sécurité rigoureuses :  
+- Génération correcte des IV.  
+- Utilisation de modes de chiffrement modernes avec authentification.  
+- Inclusion d’une couche de vérification d’intégrité des messages.
+
+
+
+#### **Leçons tirées et recommandations pour des implémentations futures**
+
+- **Intégration systématique de l’authentification** : Protéger la confidentialité sans garantir l’intégrité des messages affaiblit la sécurité globale.
+
+- **Bonne gestion des clés et des IV** : Une clé bien protégée et des IV robustes sont essentiels pour maintenir la sécurité d’un système.
+
+- **Combinaison prudente de stéganographie et de cryptographie** : Bien que l’idée soit intéressante, elle introduit une complexité qui doit être maîtrisée pour éviter les vulnérabilités.
+
+---
+
+En conclusion, ce défi a permis de mettre en pratique des techniques avancées d’analyse réseau et de cryptographie tout en mettant en évidence des erreurs classiques à éviter. Ces leçons renforcent l’importance des meilleures pratiques en sécurité informatique.
